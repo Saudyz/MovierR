@@ -88,8 +88,13 @@ const MovieListScreen = ({ navigation }) => {
   useEffect(() => {
     // Efecto secundario realizar la petición a la API
     getMovies();
-    getGeners();
   }, []);
+
+    // Hook de efecto
+    useEffect(() => {
+      // Efecto secundario realizar la petición a la API
+      getGeners();
+    }, []);
 
   // Remueve el valor de error del input de búsqueda si el usuario ingresa información
   useEffect(() => {
@@ -180,27 +185,27 @@ const MovieListScreen = ({ navigation }) => {
         }}
       />
        
-     <Footer style={styles.header}>
-     <FlatList
-        data={geners.genres}
-        horizontal
-        keyExtractor={(item) => item.id.toString()}
-        ListEmptyComponent={<Text>¡No se han encontrado geners!</Text>}
-        renderItem={({ item }) => {
-          return (
-            <View>
-              <TouchableOpacity
-              onPress={() =>
-                navigation.navigate("movieGeners", { id: item.id })
-              }>
-                <Card style={{backgroundColor:"#2271B3"}}>
-                  <Text style={{fontSize:30}}>{item.name}</Text>
-                </Card>
-              </TouchableOpacity>
-            </View>
-          );
-        }}
-      />
+    <Footer style={styles.header}>
+      <FlatList
+          data={geners.genres}
+          horizontal
+          keyExtractor={(item) => item.id.toString()}
+          ListEmptyComponent={<Text>¡No se han encontrado geners!</Text>}
+          renderItem={({ item }) => {
+            return (
+              <View>
+                <TouchableOpacity
+                onPress={() =>
+                  navigation.navigate("movieGeners", { id: item.id })
+                }>
+                  <Card style={{backgroundColor:"#2271B3"}}>
+                    <Text style={{fontSize:30}}>{item.name}</Text>
+                  </Card>
+                </TouchableOpacity>
+              </View>
+            );
+          }}
+        />
      </Footer>
    
     </Container>
